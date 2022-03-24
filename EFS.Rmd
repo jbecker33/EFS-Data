@@ -1,0 +1,54 @@
+---
+title: "EFS"
+author: "Jacob Becker"
+date: "3/24/2022"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+setwd("C:\\Users\\Jacob\\Desktop\\EFS")
+```
+
+```{r}
+efs.students <- read_csv("EFS Students  - Sheet1.csv")
+efs.teacher <- read_csv("EFS Teachers - Sheet1.csv")
+florida.politics <- read_csv("Politics - Sheet1.csv")
+```
+
+```{r}
+#Students and Teacher
+
+trans.teacher <- t(efs.teacher)
+trans.students <- t(efs.students)
+
+
+teachers <- trans.teacher[2, ]
+students <- trans.students[2, ]
+
+student.teacher <- intersect(teachers, students)
+
+view(student.teacher)
+```
+
+
+```{r}
+trans.poltics <- t(florida.politics)
+
+politics <- trans.poltics[1, ]
+
+student.poltics <- intersect(students, politics)
+
+
+view(student.poltics)
+
+teachers.politics <- intersect(teachers, politics)
+
+view(teachers.politics)
+```
+
